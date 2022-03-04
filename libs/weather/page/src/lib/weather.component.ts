@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { getCitiesDaily, getCitiesHourly, getError, getLoading, loadCityGeo } from '@bp/weather-forecast/services';
 import { Store } from '@ngrx/store';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
 	selector: 'bp-weather',
@@ -15,20 +16,25 @@ export class WeatherComponent implements OnInit {
 	citiesHourly$ = this.store.select(getCitiesHourly);
 	citiesDaily$ = this.store.select(getCitiesDaily);
 
-	constructor(private fb: FormBuilder, private store: Store) {}
+	constructor(private fb: FormBuilder, private store: Store, private route: ActivatedRoute, private router: Router) {}
 
 	ngOnInit(): void {
+		const {q, mode} = this.route.snapshot.queryParams;
 		this.searchForm = this.fb.group({
-			q: ['', [Validators.required]],
-			mode: ['hourly', []],
+			q: [q || '', [Validators.required]],
+			mode: [mode || 'hourly', []],
 		});
+		this.searchForm.valueChanges.subscribe((values)=> {
+		})
 	}
 
 	search() {
 		if (this.searchForm.invalid) {
 			return;
 		}
-		const { q: cityName } = this.searchForm.value;
+		const formValues = this.searchForm.value;
+		this.router.navigate([], {queryParams: formValues, queryParamsHandling: 'merge'})
+		const { q: cityName } = formValues;
 		this.store.dispatch(loadCityGeo({ cityName, mode: this.searchForm.value.mode }));
 		this.searchForm.patchValue({ q: '' }, { emitEvent: false });
 	}
