@@ -1,7 +1,14 @@
-# Welcome, a fellow developer, I'm glad you are here!
+# Weather App by Alejandro Alvarez Sosa
+## Stack:
+-Nx
+-Angular
+-Angular Material
+-TailwindCss
+-NgRx
 
-Please, put the solution on GitHub and send the link back via email.
-Enjoy!
+## Screenshots
+![imagen](https://user-images.githubusercontent.com/59458180/156718727-fbce73dc-7e17-49c0-b774-d650608edbf8.png)
+![imagen](https://user-images.githubusercontent.com/59458180/156718750-bdc9ac1b-d9cf-4bee-83b9-78035a372b48.png)
 
 # The day to day task: weather forecast
 
