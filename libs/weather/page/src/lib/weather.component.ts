@@ -24,8 +24,6 @@ export class WeatherComponent implements OnInit {
 			q: [q || '', [Validators.required]],
 			mode: [mode || 'hourly', []],
 		});
-		this.searchForm.valueChanges.subscribe((values)=> {
-		})
 	}
 
 	search() {
