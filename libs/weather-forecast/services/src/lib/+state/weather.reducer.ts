@@ -8,7 +8,7 @@ export const WEATHER_FEATURE_KEY = 'weather';
 export interface State {
 	citiesHourly: ResultData[];
 	citiesDaily: ResultData[];
-	loading: boolean; // has the Weather list been loaded
+	loading: boolean;
 	error?: string | null; // last known error (if any)
 }
 
